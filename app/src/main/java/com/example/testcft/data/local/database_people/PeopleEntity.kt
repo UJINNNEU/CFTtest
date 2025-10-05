@@ -1,4 +1,4 @@
-package com.example.testcft.database_people
+package com.example.testcft.data.local.database_people
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

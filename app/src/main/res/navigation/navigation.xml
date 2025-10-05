@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
-        android:name="com.example.testcft.secondFragment"
+        android:name="com.example.testcft.presentation.second_fragment.secondFragment"
         android:label="fragment_second"
         tools:layout="@layout/fragment_second" >
         <action

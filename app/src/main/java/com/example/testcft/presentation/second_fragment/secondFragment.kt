@@ -1,4 +1,4 @@
-package com.example.testcft
+package com.example.testcft.presentation.second_fragment
 
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.testcft.R
 import com.example.testcft.databinding.FragmentSecondBinding
 import com.example.testcft.presentation.main_fragment.ViewModelMain
 

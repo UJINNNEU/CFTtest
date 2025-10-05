@@ -1,4 +1,4 @@
-package com.example.testcft.database_people
+package com.example.testcft.data.local.database_people
 
 import androidx.room.Dao
 import androidx.room.Delete

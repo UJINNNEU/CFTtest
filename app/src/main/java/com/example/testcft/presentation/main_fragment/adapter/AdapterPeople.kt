@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testcft.R
-import com.example.testcft.database_people.OnItemClickListener
-import com.example.testcft.database_people.PeopleEntity
+import com.example.testcft.data.local.database_people.OnItemClickListener
+import com.example.testcft.data.local.database_people.PeopleEntity
 import com.example.testcft.databinding.ItemPeopleBinding
 
 class AdapterPeople(private val listener: OnItemClickListener): RecyclerView.Adapter<AdapterPeople.MyViewHolder>()  {

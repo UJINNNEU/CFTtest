@@ -18,18 +18,20 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.testcft.R
-import com.example.testcft.database_people.DatabaseDao
-import com.example.testcft.database_people.OnItemClickListener
-import com.example.testcft.database_people.PeopleDataBase
-import com.example.testcft.database_people.PeopleEntity
+import com.example.testcft.data.remote.UserAPI
+import com.example.testcft.data.local.database_people.DatabaseDao
+import com.example.testcft.data.local.database_people.OnItemClickListener
+import com.example.testcft.data.local.database_people.PeopleDataBase
+import com.example.testcft.data.local.database_people.PeopleEntity
 import com.example.testcft.databinding.FragmentMainBinding
 import com.example.testcft.presentation.main_fragment.adapter.AdapterPeople
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.ByteArrayOutputStream
 import java.net.URL
 import kotlin.coroutines.resume
@@ -81,39 +83,60 @@ class MainFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
-        lifecycleScope.launch {
-            val listPeopleFirst = peopleDao.getAllPeople()
-            if(listPeopleFirst.first().isNotEmpty())
-            {
-               adapter.addList(listPeopleFirst.first())
-            }
-            else
-            {
-              saveAndGetAPI()
-            }
-
-        }
+//        lifecycleScope.launch {
+//            val listPeopleFirst = peopleDao.getAllPeople()
+//            if(listPeopleFirst.first().isNotEmpty())
+//            {
+//               adapter.addList(listPeopleFirst.first())
+//            }
+//            else
+//            {
+//              saveAndGetAPI()
+//            }
+//
+//        }
 
         // Кнопка загрузки 10 пользователей
         binding.floatingActionButton2.setOnClickListener {
 
             lifecycleScope.launch {
-                saveAndGetAPI()
+               // saveAndGetAPI()
+                retrofitGetAPI()
             }
 
         }
 
-        // Кнопка очистки списка
-        binding.floatingActionButton3.setOnClickListener {
+//        // Кнопка очистки списка
+//        binding.floatingActionButton3.setOnClickListener {
+//
+//            adapter.addList(emptyList())
+//            adapter.notifyDataSetChanged()
+//
+//            lifecycleScope.launch {
+//                peopleDao.deleteAllPeople()
+//            }
+//
+//        }
 
-            adapter.addList(emptyList())
-            adapter.notifyDataSetChanged()
+    }
 
-            lifecycleScope.launch {
-                peopleDao.deleteAllPeople()
-            }
+    private suspend fun retrofitGetAPI()
+    {
+        try {
+            val retrofit =  Retrofit.Builder().baseUrl("https://randomuser.me").
+        addConverterFactory(GsonConverterFactory.create()).build()
 
+            val getApi = retrofit.create(UserAPI::class.java)
+            val responce = getApi.getUser(10)
+            Log.d("MyLog", "$responce")
+            val users = responce.results
+            Log.d("MyLog","\n End ${ users.size}")
         }
+        catch (e: Exception)
+        {
+            Log.d("MyLog","$e")
+        }
+
 
     }
 
