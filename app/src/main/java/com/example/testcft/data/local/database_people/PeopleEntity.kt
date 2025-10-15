@@ -8,20 +8,20 @@ import androidx.room.PrimaryKey
 data class PeopleEntity (
     @PrimaryKey(autoGenerate = true)
     val id:Int? = null,
+    @ColumnInfo(name = "titleName")
+    val titleName:String?,
     @ColumnInfo(name = "firstName")
-    val firstName:String,
-    @ColumnInfo(name = "middleName")
-    val middleName:String,
+    val firstName:String?,
     @ColumnInfo(name = "lastName")
-    val lastName:String,
+    val lastName:String?,
     @ColumnInfo(name = "latitude")
-    val latitude:Double,
+    val latitude:Double?,
     @ColumnInfo(name = "longitude")
-    val longitude:Double,
+    val longitude:Double?,
     @ColumnInfo(name = "numberPhone")
-    val numberPhone:String,
+    val numberPhone:String?,
     @ColumnInfo(name = "email")
-    val email:String,
+    val email:String?,
     @ColumnInfo(name = "photo")
     var photo: ByteArray? = null
 )

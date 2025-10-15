@@ -3,8 +3,8 @@ package com.example.testcft.data.remote.api.results.DTO
 import com.google.gson.annotations.SerializedName
 
 data class ResultsDTO(
-    @SerializedName("gender")
-    val gender: String?,
+    @SerializedName("name")
+    val nameDTO: NameDTO?,
     @SerializedName("location")
     val locationDTO: LocationDTO?,
     @SerializedName("email")

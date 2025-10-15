@@ -12,7 +12,7 @@ interface DatabaseDao {
 
         //CRUD
         @Query("Select * from People order by id desc")
-        fun getAllPeople(): Flow<List<PeopleEntity>>
+        suspend fun getAllPeople(): List<PeopleEntity>
 
         @Query("Select * from People where id = :id limit 1")
         suspend fun getPeopleById(id:Int): PeopleEntity

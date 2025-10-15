@@ -38,7 +38,7 @@ class secondFragment : Fragment() {
         }
 
         binding.firstName2.text = viewModelMain.peopleEntity?.firstName ?: "ERRORviewModel"
-        binding.middleName2.text = viewModelMain.peopleEntity?.middleName ?: "ERRORviewModel"
+        binding.middleName2.text = viewModelMain.peopleEntity?.titleName ?: "ERRORviewModel"
         binding.lastName2.text = viewModelMain.peopleEntity?.lastName ?: "ERRORviewModel"
         binding.phone2.text = viewModelMain.peopleEntity?.numberPhone ?: "ERRORviewModel"
         binding.email2.text = viewModelMain.peopleEntity?.email ?: "ERRORviewModel"
@@ -54,13 +54,13 @@ class secondFragment : Fragment() {
         }
 
         binding.imageButton1.setOnClickListener(){
-            makePhoneCall(viewModelMain.peopleEntity!!.numberPhone)
+            //makePhoneCall(viewModelMain.peopleEntity!!.numberPhone)
         }
         binding.imageButton2.setOnClickListener(){
-            sendEmail(viewModelMain.peopleEntity!!.email)
+            //sendEmail(viewModelMain.peopleEntity!!.email)
         }
         binding.imageButton3.setOnClickListener(){
-            map(viewModelMain.peopleEntity!!.longitude,viewModelMain.peopleEntity!!.latitude)
+           // map(viewModelMain.peopleEntity!!.longitude,viewModelMain.peopleEntity!!.latitude)
         }
 
 

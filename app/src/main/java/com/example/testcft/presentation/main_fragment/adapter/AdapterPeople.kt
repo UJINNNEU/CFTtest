@@ -40,7 +40,7 @@ class AdapterPeople(private val listener: OnItemClickListener): RecyclerView.Ada
             binding.apply {
 
                  textfirstname1.text = peopleEntity.firstName
-                 middlenametext1.text = peopleEntity.middleName
+                 middlenametext1.text = peopleEntity.titleName
                  lastnametext1.text = peopleEntity.lastName
 
                 numberphonetext1.text = peopleEntity.numberPhone
