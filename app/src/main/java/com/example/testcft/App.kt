@@ -11,19 +11,17 @@ class App: Application()
 {
     lateinit var getApi: UserAPI
 
-    private lateinit var db:PeopleDataBase
-    private lateinit var peopleDao: DatabaseDao
+   //private lateinit var db:PeopleDataBase
+   // private lateinit var peopleDao: DatabaseDao
 
     override fun onCreate() {
         super.onCreate()
-
-        db = PeopleDataBase.getDataBase(applicationContext)
-        peopleDao = db.DatabaseDao()
 
         val retrofit =  Retrofit.Builder().baseUrl("https://randomuser.me").
         addConverterFactory(GsonConverterFactory.create()).build()
         getApi = retrofit.create(UserAPI::class.java)
 
+      // db = PeopleDataBase.getDataBase(applicationContext)
+      // peopleDao = db.DatabaseDao()
     }
-
 }

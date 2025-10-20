@@ -11,9 +11,8 @@ import java.net.URL
 
 class ImageDownloader
 {
-    private suspend fun downloadImageAsByteArray(
-        url: String): ByteArray? {
-        //photo = downloadImageAsByteArray(userObject.getJSONObject("picture").getString("large")), // или преобразуйте photoUrl в ByteArray если нужно
+     suspend fun downloadImageAsByteArray(
+        url: String?): ByteArray? {
         return try {
             withContext(Dispatchers.IO) {
                 val connection = URL(url).openConnection()
@@ -28,8 +27,6 @@ class ImageDownloader
             }
         } catch (e: Exception) {
             Log.e("ImageLoad", "Error loading image", e)
-          //  Toast.makeText(requireContext(), "Ошибка загрузки: ${e.message}", Toast.LENGTH_SHORT).show()
-
             null
         }
     }

@@ -1,6 +1,6 @@
-package com.example.testcft.data.local.database_people
+import com.example.testcft.domain.model.User
 
 interface OnItemClickListener {
-    fun onItemClick(peopleEntity: PeopleEntity)
+    fun onItemClick(user: User)
     //fun onItemClickEkz(itemRv: Item_RV)
 }

@@ -4,8 +4,8 @@ import com.example.testcft.domain.repository.UserRepository
 
 class GetUsersUseCase(private val userRepository: UserRepository)
 {
-    suspend fun execute():List<User>{
-        return userRepository.getUsers()
-    }
+//    suspend fun execute():List<User>{
+//        return userRepository.getUsers()
+//    }
 
 }

@@ -1,28 +1,24 @@
 package com.example.testcft.data.remote
-
 import android.util.Log
 import com.example.testcft.App
+import com.example.testcft.data.remote.api.results.DTO.ResultsDTO
 
-class UserRemoteDataSource {
-    val app = App()
-    private suspend fun retrofitGetAPI(
+class UserRemoteDataSource(val app:App) {
 
-    ) {
-
+     suspend fun retrofitGetAPI():List<ResultsDTO> {
         try {
-           // val getApi = (requireActivity().application as App ).getApi
             val getApi = app.getApi
             val responce = getApi.getUser(10)
-            Log.d("MyLog", "$responce")
-            val users = responce.results
-            Log.d("MyLog","\n End ${ users.size}")
+             val users = responce.results
+            users.map{
+              //  Log.d("MyLog","{${it.nameDTO?.firstName}}")
+
+            }
+            return users
         }
-        catch (e: Exception)
-        {
+        catch (e: Exception) {
             Log.d("MyLog","$e")
+            return emptyList()
         }
-
-
     }
-
 }

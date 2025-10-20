@@ -1,17 +1,17 @@
 package com.example.testcft.presentation.main_fragment.adapter
 
+import OnItemClickListener
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testcft.R
-import com.example.testcft.data.local.database_people.OnItemClickListener
-import com.example.testcft.data.local.database_people.PeopleEntity
 import com.example.testcft.databinding.ItemPeopleBinding
+import com.example.testcft.domain.model.User
 
 class AdapterPeople(private val listener: OnItemClickListener): RecyclerView.Adapter<AdapterPeople.MyViewHolder>()  {
 
-    private var itemList = emptyList<PeopleEntity>()
+    private var itemList = emptyList<User>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemPeopleBinding.inflate(
@@ -28,7 +28,7 @@ class AdapterPeople(private val listener: OnItemClickListener): RecyclerView.Ada
 
     override fun getItemCount(): Int = itemList.size
 
-    fun addList(item: List<PeopleEntity>) {
+    fun addList(item: List<User>) {
         this.itemList = item
         notifyDataSetChanged()
     }
@@ -36,18 +36,18 @@ class AdapterPeople(private val listener: OnItemClickListener): RecyclerView.Ada
     class MyViewHolder(private val binding: ItemPeopleBinding, private val listener: OnItemClickListener
     ): RecyclerView.ViewHolder(binding.root)
     {
-        fun bind(peopleEntity: PeopleEntity, holder: MyViewHolder) {
+        fun bind(user: User, holder: MyViewHolder) {
             binding.apply {
 
-                 textfirstname1.text = peopleEntity.firstName
-                 middlenametext1.text = peopleEntity.titleName
-                 lastnametext1.text = peopleEntity.lastName
+                 textfirstname1.text = user.firstName
+                 middlenametext1.text = user.titleName
+                 lastnametext1.text = user.lastName
 
-                numberphonetext1.text = peopleEntity.numberPhone
-                addresstext1.text = "shirota: ${peopleEntity.latitude}  golgota:${peopleEntity.longitude}"
+                numberphonetext1.text = user.numberPhone
+                addresstext1.text = "shirota: ${user.latitude}  golgota:${user.longitude}"
 
-                if (peopleEntity.photo != null) {
-                    val bitmap = BitmapFactory.decodeByteArray(peopleEntity.photo, 0, peopleEntity.photo!!.size)
+                if (user.photo != null) {
+                    val bitmap = BitmapFactory.decodeByteArray(user.photo, 0, user.photo!!.size)
                     photo1.setImageBitmap(bitmap)
                 } else {
                     // если фото нет — дефолтное
@@ -56,7 +56,7 @@ class AdapterPeople(private val listener: OnItemClickListener): RecyclerView.Ada
 
                  cardView.setOnClickListener()
                  {
-                    listener.onItemClick(peopleEntity)
+                    listener.onItemClick(user)
                  }
             }
         }

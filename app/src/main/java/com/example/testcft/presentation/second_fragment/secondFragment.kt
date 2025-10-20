@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.testcft.R
 import com.example.testcft.databinding.FragmentSecondBinding
+import com.example.testcft.presentation.ViewModelUserParser
 import com.example.testcft.presentation.main_fragment.ViewModelMain
 
 class secondFragment : Fragment() {
@@ -27,7 +28,7 @@ class secondFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_second, container, false)
     }
 
-    val viewModelMain: ViewModelMain by activityViewModels()
+    val viewModelMain: ViewModelUserParser by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,30 +38,30 @@ class secondFragment : Fragment() {
             findNavController().navigate(R.id.action_secondFragment_to_mainFragment)
         }
 
-        binding.firstName2.text = viewModelMain.peopleEntity?.firstName ?: "ERRORviewModel"
-        binding.middleName2.text = viewModelMain.peopleEntity?.titleName ?: "ERRORviewModel"
-        binding.lastName2.text = viewModelMain.peopleEntity?.lastName ?: "ERRORviewModel"
-        binding.phone2.text = viewModelMain.peopleEntity?.numberPhone ?: "ERRORviewModel"
-        binding.email2.text = viewModelMain.peopleEntity?.email ?: "ERRORviewModel"
-        binding.dolgota2.text = (viewModelMain.peopleEntity?.latitude ?: 0.0).toString()
-        binding.shirota2.text = (viewModelMain.peopleEntity?.longitude?: 0.0).toString()
+        binding.firstName2.text = viewModelMain.user?.firstName ?: "ERRORviewModel"
+        binding.middleName2.text = viewModelMain.user?.titleName ?: "ERRORviewModel"
+        binding.lastName2.text = viewModelMain.user?.lastName ?: "ERRORviewModel"
+        binding.phone2.text = viewModelMain.user?.numberPhone ?: "ERRORviewModel"
+        binding.email2.text = viewModelMain.user?.email ?: "ERRORviewModel"
+        binding.dolgota2.text = (viewModelMain.user?.latitude ?: 0.0).toString()
+        binding.shirota2.text = (viewModelMain.user?.longitude?: 0.0).toString()
 
-        if (viewModelMain.peopleEntity?.photo != null) {
-            val bitmap = BitmapFactory.decodeByteArray(viewModelMain.peopleEntity!!.photo, 0,
-                viewModelMain.peopleEntity!!.photo!!.size)
+        if (viewModelMain.user?.photo != null) {
+            val bitmap = BitmapFactory.decodeByteArray(viewModelMain.user!!.photo, 0,
+                viewModelMain.user!!.photo!!.size)
             binding.imageView.setImageBitmap(bitmap)
         } else {
             binding.imageView.setImageResource(R.drawable.ic_launcher_foreground)
         }
 
         binding.imageButton1.setOnClickListener(){
-            //makePhoneCall(viewModelMain.peopleEntity!!.numberPhone)
+            //makePhoneCall(viewModelMain.user!!.numberPhone)
         }
         binding.imageButton2.setOnClickListener(){
-            //sendEmail(viewModelMain.peopleEntity!!.email)
+            //sendEmail(viewModelMain.user!!.email)
         }
         binding.imageButton3.setOnClickListener(){
-           // map(viewModelMain.peopleEntity!!.longitude,viewModelMain.peopleEntity!!.latitude)
+           // map(viewModelMain.user!!.longitude,viewModelMain.user!!.latitude)
         }
 
 
